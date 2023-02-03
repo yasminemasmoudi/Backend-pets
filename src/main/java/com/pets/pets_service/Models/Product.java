@@ -6,18 +6,18 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Data
-public class Species {
+public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "specie_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private String type;
+    private Float price;
+    private boolean inStock;
 
-    @OneToOne(mappedBy = "species")
-    private Pet pet;
-
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    private ProductProvider productProvider;
 }

@@ -18,9 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 
 public class PetOwner  extends Person{
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
 
     @OneToMany(mappedBy = "petOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Pet> pets;
