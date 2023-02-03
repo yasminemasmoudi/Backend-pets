@@ -14,9 +14,11 @@ import javax.persistence.*;
 @DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "clients")
-public class Client extends Person{
+@Table(name = "veterinaries")
+public class Veterinary extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String officeAddress;
+    private String speciality;
 }
