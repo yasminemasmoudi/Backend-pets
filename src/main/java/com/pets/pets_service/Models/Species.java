@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @DynamicUpdate
@@ -17,7 +18,7 @@ public class Species {
     private Integer id;
     private String type;
 
-    @OneToOne(mappedBy = "species")
-    private Pet pet;
+    @OneToMany(mappedBy = "species")
+    private List<Pet> pets;
 
 }

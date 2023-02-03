@@ -23,7 +23,7 @@ public class Pet {
     private String arrivalTime;
     private boolean forAdoption;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "pet_specie_id")
     private Species species;
 

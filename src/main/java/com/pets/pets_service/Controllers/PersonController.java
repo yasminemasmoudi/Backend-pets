@@ -14,7 +14,7 @@ import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/v3")
+@RequestMapping("api/v1")
 public class PersonController {
     @Autowired
     private PersonRepo personRepo ;
@@ -31,7 +31,7 @@ public class PersonController {
                 .orElseThrow(() -> new ResourceNotFoundException("Person not found"));
         return ResponseEntity.ok().body(person);
     }
-    @PostMapping("/pets")
+    @PostMapping("/persons")
     public Person createPerson(@Valid @RequestBody Person person) {
         return personRepo.save(person);
     }
