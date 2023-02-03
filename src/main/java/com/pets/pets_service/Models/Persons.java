@@ -8,18 +8,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "pet")
 @DynamicUpdate
 @DynamicInsert
-public class Pet {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String sex;
-    private String age;
-    private String furColor;
-    private String weight;
-    private String length;
-    private String arrivalTime;
-    private boolean forAdoption;
+    private String fullName;
+    private String email;
+    private String address;
+    private String phone;
 }
