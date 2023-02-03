@@ -14,7 +14,6 @@ import javax.persistence.*;
 @DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "veterinaries")
 public class Veterinary extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

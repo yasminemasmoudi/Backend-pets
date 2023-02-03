@@ -17,7 +17,6 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@Table(name = "pet_owners")
 public class PetOwner  extends Person{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
