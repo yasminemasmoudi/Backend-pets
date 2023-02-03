@@ -8,10 +8,9 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "pet")
 @DynamicUpdate
 @DynamicInsert
-public class Pet {
+public class Pets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
@@ -24,4 +23,9 @@ public class Pet {
     private boolean forAdoption;
     @OneToOne
     private Species species;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_owners_id", nullable = false)
+    private PetOwners petOwners;
+
 }

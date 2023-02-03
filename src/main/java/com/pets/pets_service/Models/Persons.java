@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-public class Person {
+public class Persons {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

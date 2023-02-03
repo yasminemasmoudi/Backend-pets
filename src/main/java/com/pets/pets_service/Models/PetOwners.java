@@ -12,11 +12,11 @@ import java.util.Set;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Table(name = "pet_owner")
-public class PetOwner {
+@Table(name = "pet_owners")
+public class PetOwners {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @OneToMany(mappedBy = "pet_owner" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Pet> pets;
+    private Set<Pets> pets;
 }
