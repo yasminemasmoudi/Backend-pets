@@ -24,10 +24,14 @@ public class Pet {
     private boolean forAdoption;
 
     @ManyToOne
-    @JoinColumn(name = "pet_specie_id")
+    @JoinColumn(name = "species_id")
     private Species species;
 
     @ManyToOne
     @JoinColumn(name = "pet_owner_id")
     private PetOwner petOwner;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;  
 }

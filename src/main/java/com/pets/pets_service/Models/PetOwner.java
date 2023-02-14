@@ -19,7 +19,10 @@ import java.util.Set;
 
 public class PetOwner  extends Person{
 
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    
     @OneToMany(mappedBy = "petOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Pet> pets;
-
 }

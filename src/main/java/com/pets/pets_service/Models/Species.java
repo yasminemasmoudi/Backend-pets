@@ -14,11 +14,11 @@ import java.util.List;
 public class Species {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "specie_id")
+    @Column(name = "species_id")
     private Integer id;
     private String type;
 
-    @OneToMany(mappedBy = "species")
+    @OneToMany(mappedBy = "species", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Pet> pets;
 
 }

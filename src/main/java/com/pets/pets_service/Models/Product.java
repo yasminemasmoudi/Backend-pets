@@ -20,4 +20,8 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private ProductProvider productProvider;
+
+    @ManyToOne
+    @JoinColumn(name = "product_type_id")
+    private ProductType productType;
 }

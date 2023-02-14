@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
 
 @Data
@@ -22,4 +19,10 @@ public class Contract {
     private Float price;
     @Enumerated(EnumType.STRING)
     private ContractType contractType;
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
+    private Pet pet;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 }
