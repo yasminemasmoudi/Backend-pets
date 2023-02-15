@@ -27,4 +27,11 @@ public class PetOwner{
     private String address;
     private String phone;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "petOwner")
+    private Set<Pet> pets;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "petOwner")
+    private Set<Product> products;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "petOwner")
+    private Set<Appointment> appointments;
+
 }

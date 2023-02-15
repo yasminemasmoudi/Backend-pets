@@ -17,6 +17,8 @@ public class Species {
     private Integer id;
     private String type;
 
+    @OneToMany(mappedBy = "species")
+    private List<Pet> pets;
 
 
 }

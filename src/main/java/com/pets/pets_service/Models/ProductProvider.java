@@ -22,4 +22,7 @@ public class ProductProvider {
     private String phone;
     private String ProductType;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

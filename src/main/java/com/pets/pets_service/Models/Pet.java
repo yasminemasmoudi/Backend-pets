@@ -22,4 +22,14 @@ public class Pet {
     private String length;
     private String arrivalTime;
     private boolean forAdoption;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_owner_id")
+    private PetOwner petOwner;
+
+    @ManyToOne
+    @JoinColumn(name = "species_id")
+    private Species species;
+
 }
+

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Data
@@ -23,4 +25,8 @@ public class Veterinary{
     private String phone;
     private String officeAddress;
     private String speciality;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "veterinary")
+    private Set<Appointment> appointments;
+    
 }
