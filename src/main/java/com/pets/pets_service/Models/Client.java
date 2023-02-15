@@ -15,8 +15,12 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Client extends Person{
+public class Client{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String fullName;
+    private String email;
+    private String address;
+    private String phone;
 }

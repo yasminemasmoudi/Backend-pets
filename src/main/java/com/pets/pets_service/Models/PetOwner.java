@@ -17,11 +17,15 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class PetOwner  extends Person{
+public class PetOwner{
 
     @Id 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String fullName;
+    private String email;
+    private String address;
+    private String phone;
     
     @OneToMany(mappedBy = "petOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Pet> pets;

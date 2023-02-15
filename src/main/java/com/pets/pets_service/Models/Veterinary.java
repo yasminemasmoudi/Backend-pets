@@ -14,7 +14,13 @@ import javax.persistence.*;
 @DynamicInsert
 @AllArgsConstructor
 @NoArgsConstructor
-public class Veterinary extends Person {
+public class Veterinary{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+    private String fullName;
+    private String email;
+    private String phone;
     private String officeAddress;
     private String speciality;
 }

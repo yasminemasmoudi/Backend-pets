@@ -11,8 +11,16 @@ import java.util.List;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-public class ProductProvider extends Person {
-private String ProductType;
+public class ProductProvider {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
+    private String fullName;
+    private String email;
+    private String address;
+    private String phone;
+    private String ProductType;
 
 @OneToMany(cascade = CascadeType.ALL)
 @JoinColumn(name = "provider_id", referencedColumnName = "id")

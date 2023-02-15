@@ -1,7 +1,6 @@
 package com.pets.pets_service.Controllers;
 
 import com.pets.pets_service.Exception.ResourceNotFoundException;
-import com.pets.pets_service.Models.Person;
 import com.pets.pets_service.Models.Species;
 import com.pets.pets_service.Repositories.SpeciesRepo;
 import org.springframework.beans.factory.annotation.Autowired;
