@@ -22,7 +22,4 @@ public class ProductProvider {
     private String phone;
     private String ProductType;
 
-@OneToMany(cascade = CascadeType.ALL)
-@JoinColumn(name = "provider_id", referencedColumnName = "id")
-private List<Product> products;
 }

@@ -26,7 +26,5 @@ public class PetOwner{
     private String email;
     private String address;
     private String phone;
-    
-    @OneToMany(mappedBy = "petOwner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Pet> pets;
+
 }

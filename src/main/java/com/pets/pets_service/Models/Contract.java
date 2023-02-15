@@ -19,10 +19,5 @@ public class Contract {
     private Float price;
     @Enumerated(EnumType.STRING)
     private ContractType contractType;
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+
 }

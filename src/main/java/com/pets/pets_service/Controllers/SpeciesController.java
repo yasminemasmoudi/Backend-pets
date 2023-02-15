@@ -41,7 +41,6 @@ public class SpeciesController {
         Species species = speciesRepo.findById(speciesId)
                 .orElseThrow(() -> new ResourceNotFoundException("species not found"));
         species.setType(speciesDetails.getType());
-        species.setPets(speciesDetails.getPets());
 
         final Species updatedSpecies = speciesRepo.save(species);
         return ResponseEntity.ok(updatedSpecies);

@@ -16,12 +16,4 @@ public class Product {
     private Integer id;
     private Float price;
     private boolean inStock;
-
-    @ManyToOne
-    @JoinColumn(name = "provider_id")
-    private ProductProvider productProvider;
-
-    @ManyToOne
-    @JoinColumn(name = "product_type_id")
-    private ProductType productType;
 }
