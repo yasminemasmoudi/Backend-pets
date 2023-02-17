@@ -47,6 +47,8 @@ public class PetController {
         pet.setLength(petDetails.getLength());
         pet.setArrivalTime(petDetails.getArrivalTime());
         pet.setForAdoption(pet.isForAdoption());
+        pet.setImg_url(petDetails.getImg_url());
+
         final Pet updatedPet = petRepo.save(pet);
         return ResponseEntity.ok(updatedPet);
     }

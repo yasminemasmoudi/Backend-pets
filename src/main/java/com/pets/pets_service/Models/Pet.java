@@ -21,6 +21,7 @@ public class Pet {
     private String weight;
     private String length;
     private String arrivalTime;
+    private String img_url;
     private boolean forAdoption;
 
     @ManyToOne

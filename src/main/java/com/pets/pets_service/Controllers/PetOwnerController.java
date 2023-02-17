@@ -43,7 +43,6 @@ public class PetOwnerController {
         petOwner.setAddress(petOwner.getAddress());
         petOwner.setPhone(petOwner.getPhone());
         petOwner.setAppointments(petOwnerDetails.getAppointments());
-        petOwner.setProducts(petOwnerDetails.getProducts());
 
         final PetOwner updatedPetOwner = petOwnerRepo.save(petOwner);
         return ResponseEntity.ok(updatedPetOwner);

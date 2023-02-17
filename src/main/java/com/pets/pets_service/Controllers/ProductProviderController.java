@@ -15,6 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/v1")
 public class ProductProviderController {
+
     @Autowired
     private ProductProvider productProvider;
     @Autowired
