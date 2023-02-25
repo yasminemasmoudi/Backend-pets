@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ProductProvider {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
     private String email;

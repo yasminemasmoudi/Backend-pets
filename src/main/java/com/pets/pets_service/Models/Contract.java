@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 public class Contract {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true,nullable = false)
     private Float price;

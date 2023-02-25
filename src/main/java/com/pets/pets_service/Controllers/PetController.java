@@ -1,7 +1,9 @@
 package com.pets.pets_service.Controllers;
 
 import com.pets.pets_service.Exception.ResourceNotFoundException;
+import com.pets.pets_service.Models.Client;
 import com.pets.pets_service.Models.Pet;
+import com.pets.pets_service.Repositories.ClientRepo;
 import com.pets.pets_service.Repositories.PetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.Map;
 public class PetController {
     @Autowired
     private PetRepo petRepo ;
+    @Autowired
+    private ClientRepo clientRepo ;
 
     @GetMapping("/pets")
     public List<Pet> getAllPets(){
@@ -31,10 +35,15 @@ public class PetController {
                 .orElseThrow(() -> new ResourceNotFoundException("Pet not found"));
         return ResponseEntity.ok().body(pet);
     }
-    @PostMapping("/pets")
-    public Pet createAccount(@Valid @RequestBody Pet pet) {
-        return petRepo.save(pet);
+    @PostMapping("/{clientId}/pets")
+    public Pet createAccount(@PathVariable(value = "clientId") Integer clientID,@Valid @RequestBody Pet petRequest) {
+        Pet pet= clientRepo.findById(clientID).map(client->{
+            petRequest.setClient(client);
+            return petRepo.save(petRequest);
+        }).orElseThrow(() -> new ResourceNotFoundException("Client not found"));
+        return pet;
     }
+
     @PutMapping("/pets/{id}")
     public ResponseEntity<Pet> updatePet(@PathVariable(value = "id") Integer petId,
                                                  @Valid @RequestBody Pet petDetails) throws ResourceNotFoundException {
@@ -43,9 +52,8 @@ public class PetController {
         pet.setSex(petDetails.getSex());
         pet.setAge(petDetails.getAge());
         pet.setFurColor(petDetails.getFurColor());
-        pet.setArrivalTime(petDetails.getArrivalTime());
         pet.setForAdoption(pet.isForAdoption());
-        pet.setImg_url(petDetails.getImg_url());
+        pet.setImgUrl(petDetails.getImgUrl());
         pet.setPetType(petDetails.getPetType());
         pet.setClient(petDetails.getClient());
         final Pet updatedPet = petRepo.save(pet);

@@ -7,7 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +18,7 @@ import java.util.Set;
 
 public class Client{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
     private String email;
@@ -26,7 +26,7 @@ public class Client{
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private Set<Pet> pets;
+    private List<Pet> pets;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
-    private Set<Appointment> appointments;
+    private List<Appointment> appointments;
 }

@@ -18,7 +18,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Veterinary{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String fullName;
     private String email;

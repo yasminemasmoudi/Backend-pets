@@ -1,5 +1,6 @@
 package com.pets.pets_service.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -15,7 +16,7 @@ import java.util.Date;
 @DynamicInsert
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date date;
     private Time time;
@@ -25,6 +26,5 @@ public class Appointment {
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "veterinary_id")
     private Veterinary veterinary;
 }

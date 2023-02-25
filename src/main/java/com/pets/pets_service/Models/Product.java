@@ -14,7 +14,7 @@ import javax.persistence.*;
 @DynamicInsert
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Float price;
     private boolean inStock;
