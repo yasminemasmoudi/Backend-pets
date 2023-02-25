@@ -53,7 +53,7 @@ public class ProductProviderController {
         return ResponseEntity.ok(updatedProductProvider);
     }
 
-    @DeleteMapping("/clients/{id}")
+    @DeleteMapping("/productProvider/{id}")
     public Map<String, Boolean> deleteProductProviderAccount(@PathVariable(value = "id") Integer productProviderId)
             throws ResourceNotFoundException {
         ProductProvider productProvider = productProviderRepo.findById(productProviderId)
