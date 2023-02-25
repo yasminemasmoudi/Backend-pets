@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -23,4 +24,9 @@ public class Client{
     private String email;
     private String address;
     private String phone;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
+    private Set<Pet> pets;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
+    private Set<Appointment> appointments;
 }

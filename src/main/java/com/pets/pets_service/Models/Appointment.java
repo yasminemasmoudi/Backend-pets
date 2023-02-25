@@ -4,12 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.sql.Time;
 import java.util.Date;
@@ -27,9 +22,9 @@ public class Appointment {
     private String description;
 
     @ManyToOne
-    private PetOwner petOwner;
+    private Client client;
 
     @ManyToOne
+    @JoinColumn(name = "veterinary_id")
     private Veterinary veterinary;
-
 }

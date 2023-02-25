@@ -20,4 +20,5 @@ public class Contract {
     @Enumerated(EnumType.STRING)
     private ContractType contractType;
 
+
 }

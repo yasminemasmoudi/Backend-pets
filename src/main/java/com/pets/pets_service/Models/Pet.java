@@ -1,5 +1,4 @@
 package com.pets.pets_service.Models;
-
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -10,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Table(name = "pets")
+@Table(name = "pet")
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,19 +17,17 @@ public class Pet {
     private String sex;
     private String age;
     private String furColor;
-    private String weight;
-    private String length;
     private String arrivalTime;
     private String img_url;
     private boolean forAdoption;
+    @Enumerated(EnumType.STRING)
+    private PetType petType;
 
     @ManyToOne
-    @JoinColumn(name = "pet_owner_id")
-    private PetOwner petOwner;
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @ManyToOne
-    @JoinColumn(name = "species_id")
-    private Species species;
+
 
 }
 

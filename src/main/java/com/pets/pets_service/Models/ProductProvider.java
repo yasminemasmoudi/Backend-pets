@@ -20,7 +20,7 @@ public class ProductProvider {
     private String email;
     private String address;
     private String phone;
-    private String ProductType;
+
 
     @ManyToOne
     @JoinColumn(name = "product_id")

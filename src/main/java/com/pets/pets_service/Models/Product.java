@@ -18,6 +18,9 @@ public class Product {
     private Integer id;
     private Float price;
     private boolean inStock;
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
+
 
     @OneToMany(mappedBy = "product")
     private List<ProductProvider> productProviders;

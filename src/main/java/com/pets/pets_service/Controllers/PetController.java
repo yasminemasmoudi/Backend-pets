@@ -43,12 +43,11 @@ public class PetController {
         pet.setSex(petDetails.getSex());
         pet.setAge(petDetails.getAge());
         pet.setFurColor(petDetails.getFurColor());
-        pet.setWeight(petDetails.getWeight());
-        pet.setLength(petDetails.getLength());
         pet.setArrivalTime(petDetails.getArrivalTime());
         pet.setForAdoption(pet.isForAdoption());
         pet.setImg_url(petDetails.getImg_url());
-
+        pet.setPetType(petDetails.getPetType());
+        pet.setClient(petDetails.getClient());
         final Pet updatedPet = petRepo.save(pet);
         return ResponseEntity.ok(updatedPet);
     }

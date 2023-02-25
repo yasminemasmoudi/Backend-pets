@@ -1,7 +1,6 @@
 package com.pets.pets_service.Controllers;
 import com.pets.pets_service.Exception.ResourceNotFoundException;
 import com.pets.pets_service.Models.Product;
-import com.pets.pets_service.Repositories.ProductProviderRepo;
 import com.pets.pets_service.Repositories.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +17,10 @@ import java.util.Map;
 public class ProductController {
     @Autowired
     private ProductRepo productRepo;
-    @Autowired
-    private ProductProviderRepo productProviderRepo;
 
     @GetMapping("/products")
     public List<Product> getAllProducts() {
-        return ProductRepo.findAll();
+        return productRepo.findAll();
     }
     @GetMapping("/products/{id}")
     public ResponseEntity<Product> getProductsById(@PathVariable(value = "id") Integer productId)
@@ -48,6 +45,8 @@ public class ProductController {
         product.setId(productDetails.getId());
         product.setPrice(productDetails.getPrice());
         product.setInStock(productDetails.isInStock());
+        product.setProductType(productDetails.getProductType());
+        product.setProductProviders(productDetails.getProductProviders());
 
         final Product updatedProduct = productRepo.save(product);
         return ResponseEntity.ok(updatedProduct);

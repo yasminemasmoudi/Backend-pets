@@ -2,7 +2,6 @@ package com.pets.pets_service.Controllers;
 import com.pets.pets_service.Exception.ResourceNotFoundException;
 import com.pets.pets_service.Models.Client;
 import com.pets.pets_service.Repositories.ClientRepo;
-import com.pets.pets_service.Repositories.ProductProviderRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ public class ClientController {
     @Autowired
     private ClientRepo clientRepo;
 
-    @GetMapping("/productProviders")
+    @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientRepo.findAll();
     }
@@ -47,6 +46,8 @@ public class ClientController {
         client.setPhone(clientDetails.getPhone());
         client.setAddress(clientDetails.getAddress());
         client.setEmail(clientDetails.getEmail());
+        client.setPets(clientDetails.getPets());
+        client.setAppointments(clientDetails.getAppointments());
 
         final Client updatedClient = clientRepo.save(client);
         return ResponseEntity.ok(updatedClient);

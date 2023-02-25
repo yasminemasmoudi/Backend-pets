@@ -28,5 +28,4 @@ public class Veterinary{
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "veterinary")
     private Set<Appointment> appointments;
-    
 }

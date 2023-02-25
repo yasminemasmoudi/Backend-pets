@@ -17,8 +17,6 @@ import java.util.Map;
 public class ProductProviderController {
 
     @Autowired
-    private ProductProvider productProvider;
-    @Autowired
     private ProductProviderRepo productProviderRepo;
 
     @GetMapping("/productProviders")
@@ -36,7 +34,7 @@ public class ProductProviderController {
 
     @PostMapping("/productProviders")
     public ProductProvider createProductProvider(@Valid @RequestBody  ProductProvider productProvider) {
-        return ProductProviderRepo.save(productProvider);
+        return productProviderRepo.save(productProvider);
     }
 
     @PutMapping("/productProviders/{id}")
@@ -45,7 +43,6 @@ public class ProductProviderController {
         ProductProvider productProvider = productProviderRepo.findById(ProductProviderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Client not found"));
         productProvider.setProduct(productProviderDetails.getProduct());
-        productProvider.setProductType(productProviderDetails.getPhone());
         productProvider.setId(productProviderDetails.getId());
         productProvider.setEmail(productProviderDetails.getEmail());
         productProvider.setAddress(productProviderDetails.getAddress());
