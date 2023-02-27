@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -22,7 +24,7 @@ public class ProductProvider {
     private String phone;
 
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "product_id")
-    private Product product;
+    private List<Product> products;
 }

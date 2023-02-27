@@ -42,7 +42,7 @@ public class ProductProviderController {
                                                @Valid @RequestBody ProductProvider productProviderDetails) throws ResourceNotFoundException {
         ProductProvider productProvider = productProviderRepo.findById(ProductProviderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Client not found"));
-        productProvider.setProduct(productProviderDetails.getProduct());
+        productProvider.setProducts(productProviderDetails.getProducts());
         productProvider.setId(productProviderDetails.getId());
         productProvider.setEmail(productProviderDetails.getEmail());
         productProvider.setAddress(productProviderDetails.getAddress());
