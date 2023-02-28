@@ -1,7 +1,7 @@
 package com.pets.pets_service.Controllers;
 
 import com.pets.pets_service.Exception.ResourceNotFoundException;
-import com.pets.pets_service.Models.Client;
+
 import com.pets.pets_service.Models.Pet;
 import com.pets.pets_service.Repositories.ClientRepo;
 import com.pets.pets_service.Repositories.PetRepo;
