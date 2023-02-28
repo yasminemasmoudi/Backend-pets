@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.List;
 
 import javax.persistence.*;
 
