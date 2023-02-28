@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -27,5 +27,5 @@ public class Veterinary{
     private String speciality;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "veterinary")
-    private Set<Appointment> appointments;
+    private List<Appointment> appointments;
 }
