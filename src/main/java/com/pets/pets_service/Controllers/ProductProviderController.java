@@ -47,7 +47,7 @@ public class ProductProviderController {
         productProvider.setEmail(productProviderDetails.getEmail());
         productProvider.setAddress(productProviderDetails.getAddress());
         productProvider.setPhone(productProviderDetails.getPhone());
-        productProvider.setFullName(productProviderDetails.getFullName());
+        productProvider.setName(productProviderDetails.getName());
 
         final ProductProvider updatedProductProvider = productProviderRepo.save(productProvider);
         return ResponseEntity.ok(updatedProductProvider);

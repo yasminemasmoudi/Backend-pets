@@ -22,6 +22,6 @@ public class Product {
     private ProductType productType;
 
 
-    @ManyToMany(mappedBy = "product")
-    private List<ProductProvider> productProviders;    
+    @ManyToOne
+    private ProductProvider productProviders;    
 }

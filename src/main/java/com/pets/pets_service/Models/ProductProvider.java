@@ -18,13 +18,11 @@ public class ProductProvider {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String fullName;
+    private String Name;
     private String email;
     private String address;
     private String phone;
 
-
-    @ManyToMany
-    @JoinColumn(name = "product_id")
+    @OneToMany(mappedBy = "productProviders")
     private List<Product> products;
 }
