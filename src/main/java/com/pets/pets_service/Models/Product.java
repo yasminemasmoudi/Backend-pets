@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -22,8 +21,6 @@ public class Product {
     private ProductType productType;
 
 
-    @OneToMany(mappedBy = "product")
-    private List<ProductProvider> productProviders;
-
-    
+    @ManyToOne
+    private ProductProvider productProviders;    
 }
