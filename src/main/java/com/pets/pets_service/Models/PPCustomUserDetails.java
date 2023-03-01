@@ -1,18 +1,17 @@
 package com.pets.pets_service.Models;
 
 
-import com.pets.pets_service.Models.Client;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class CustomUserDetails implements UserDetails {
+public class PPCustomUserDetails implements UserDetails {
 
-    private final Client client;
+    private final ProductProvider productprovider;
 
-    public CustomUserDetails(Client client) {
-        this.client = client;
+    public PPCustomUserDetails(ProductProvider productprovider) {
+        this.productprovider = productprovider;
     }
 
     @Override
@@ -23,12 +22,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return client.getPassword();
+        return productprovider.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return client.getEmail();
+        return productprovider.getEmail();
     }
 
     @Override
@@ -48,6 +47,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true; // change this based on the client's enabled status
+        return true; // change this based on the productprovider's enabled status
     }
 }

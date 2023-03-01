@@ -1,10 +1,10 @@
 package com.pets.pets_service.Service;
 
-import com.pets.pets_service.Registration.token.ClientConfirmationToken;
-import com.pets.pets_service.Registration.token.ClientConfirmationTokenService;
-import com.pets.pets_service.Repositories.ClientRepo;
-import com.pets.pets_service.Models.Client;
-import com.pets.pets_service.Models.ClientCustomUserDetails;
+import com.pets.pets_service.Registration.token.PPConfirmationToken;
+import com.pets.pets_service.Registration.token.PPConfirmationTokenService;
+import com.pets.pets_service.Repositories.ProductProviderRepo;
+import com.pets.pets_service.Models.ProductProvider;
+import com.pets.pets_service.Models.PPCustomUserDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,27 +17,27 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class ClientService implements UserDetailsService {
+public class PPService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final ClientRepo clientrepo;
+    private final ProductProviderRepo pprepo;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ClientConfirmationTokenService confirmationTokenService;
+    private final PPConfirmationTokenService confirmationTokenService;
 
     @Override
 public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Client client = clientrepo.findByEmail(email)
+    ProductProvider productprovider = pprepo.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
 
-    return new ClientCustomUserDetails(client);
+    return new PPCustomUserDetails(productprovider);
 }
 
 
-    public String signUpUser(Client client) {
-        boolean userExists = clientrepo
-                .findByEmail(client.getEmail())
+    public String signUpUser(ProductProvider productprovider) {
+        boolean userExists = pprepo
+                .findByEmail(productprovider.getEmail())
                 .isPresent();
 
         if (userExists) {
@@ -48,19 +48,19 @@ public UserDetails loadUserByUsername(String email) throws UsernameNotFoundExcep
         }
 
         String encodedPassword = bCryptPasswordEncoder
-                .encode(client.getPassword());
+                .encode(productprovider.getPassword());
 
-        client.setPassword(encodedPassword);
+        productprovider.setPassword(encodedPassword);
 
-        clientrepo.save(client);
+        pprepo.save(productprovider);
 
         String token = UUID.randomUUID().toString();
 
-        ClientConfirmationToken confirmationToken = new ClientConfirmationToken(
+        PPConfirmationToken confirmationToken = new PPConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
-                client
+                productprovider
         );
 
         confirmationTokenService.saveConfirmationToken(
@@ -71,7 +71,7 @@ public UserDetails loadUserByUsername(String email) throws UsernameNotFoundExcep
         return token;
     }
 
-    public int enableClient(String email) {
-        return clientrepo.enableClient(email);
+    public int enablePP(String email) {
+        return pprepo.enablePP(email);
     }
 }

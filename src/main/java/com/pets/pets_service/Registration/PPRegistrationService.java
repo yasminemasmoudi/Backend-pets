@@ -1,10 +1,10 @@
 package com.pets.pets_service.Registration;
 
-import com.pets.pets_service.Models.Client;
-import com.pets.pets_service.Service.ClientService;
+import com.pets.pets_service.Models.ProductProvider;
+import com.pets.pets_service.Service.PPService;
 // import com.pets.pets_service.email.EmailSender;
-import com.pets.pets_service.Registration.token.ConfirmationToken;
-import com.pets.pets_service.Registration.token.ConfirmationTokenService;
+import com.pets.pets_service.Registration.token.PPConfirmationToken;
+import com.pets.pets_service.Registration.token.PPConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +14,14 @@ import java.time.LocalDateTime;
 @Service
 @AllArgsConstructor
 
-public class RegistrationService {
+public class PPRegistrationService {
 
-    private final ClientService clientservice;
+    private final PPService ppservice;
     private final EmailValidator emailValidator;
-    private final ConfirmationTokenService confirmationTokenService;
+    private final PPConfirmationTokenService confirmationTokenService;
     // private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
+    public String register(PPRegistrationRequest request) {
         boolean isValidEmail = emailValidator.
                 test(request.getEmail());
 
@@ -36,8 +36,8 @@ public class RegistrationService {
         //     client.setPassword(request.getPassword());
 
 
-            String token = clientservice.signUpUser(
-                new Client(
+            String token = ppservice.signUpUser(
+                new ProductProvider(
                     request.getFullName(),
                     request.getEmail(),
                     request.getAddress(),
@@ -57,7 +57,7 @@ public class RegistrationService {
 
     @Transactional
     public String confirmToken(String token) {
-        ConfirmationToken confirmationToken = confirmationTokenService
+        PPConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
                 .orElseThrow(() ->
                         new IllegalStateException("token not found"));
@@ -73,8 +73,8 @@ public class RegistrationService {
         }
 
         confirmationTokenService.setConfirmedAt(token);
-        clientservice.enableClient(
-                confirmationToken.getClient().getEmail());
+        ppservice.enablePP(
+                confirmationToken.getProductprovider().getEmail());
         return "confirmed";
     }
 

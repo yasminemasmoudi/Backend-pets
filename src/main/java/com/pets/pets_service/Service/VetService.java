@@ -1,10 +1,10 @@
 package com.pets.pets_service.Service;
 
-import com.pets.pets_service.Registration.token.ClientConfirmationToken;
-import com.pets.pets_service.Registration.token.ClientConfirmationTokenService;
-import com.pets.pets_service.Repositories.ClientRepo;
-import com.pets.pets_service.Models.Client;
-import com.pets.pets_service.Models.ClientCustomUserDetails;
+import com.pets.pets_service.Registration.token.VetConfirmationToken;
+import com.pets.pets_service.Registration.token.VetConfirmationTokenService;
+import com.pets.pets_service.Repositories.VeterinaryRepo;
+import com.pets.pets_service.Models.Veterinary;
+import com.pets.pets_service.Models.VetCustomUserDetails;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,27 +17,27 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
-public class ClientService implements UserDetailsService {
+public class VetService implements UserDetailsService {
 
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
-    private final ClientRepo clientrepo;
+    private final VeterinaryRepo vetrepo;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final ClientConfirmationTokenService confirmationTokenService;
+    private final VetConfirmationTokenService confirmationTokenService;
 
     @Override
 public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    Client client = clientrepo.findByEmail(email)
+    Veterinary vet = vetrepo.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
 
-    return new ClientCustomUserDetails(client);
+    return new VetCustomUserDetails(vet);
 }
 
 
-    public String signUpUser(Client client) {
-        boolean userExists = clientrepo
-                .findByEmail(client.getEmail())
+    public String signUpUser(Veterinary vet) {
+        boolean userExists = vetrepo
+                .findByEmail(vet.getEmail())
                 .isPresent();
 
         if (userExists) {
@@ -48,19 +48,19 @@ public UserDetails loadUserByUsername(String email) throws UsernameNotFoundExcep
         }
 
         String encodedPassword = bCryptPasswordEncoder
-                .encode(client.getPassword());
+                .encode(vet.getPassword());
 
-        client.setPassword(encodedPassword);
+        vet.setPassword(encodedPassword);
 
-        clientrepo.save(client);
+        vetrepo.save(vet);
 
         String token = UUID.randomUUID().toString();
 
-        ClientConfirmationToken confirmationToken = new ClientConfirmationToken(
+        VetConfirmationToken confirmationToken = new VetConfirmationToken(
                 token,
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(15),
-                client
+                vet
         );
 
         confirmationTokenService.saveConfirmationToken(
@@ -71,7 +71,7 @@ public UserDetails loadUserByUsername(String email) throws UsernameNotFoundExcep
         return token;
     }
 
-    public int enableClient(String email) {
-        return clientrepo.enableClient(email);
+    public int enableVet(String email) {
+        return vetrepo.enableVet(email);
     }
 }

@@ -1,7 +1,7 @@
 package com.pets.pets_service.Registration.token;
 
 
-import com.pets.pets_service.Models.Client;
+import com.pets.pets_service.Models.Veterinary;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,12 +11,12 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @Entity
-public class ConfirmationToken {
+public class VetConfirmationToken {
 
     @SequenceGenerator(
-            name = "confirmation_token_sequence",
-            sequenceName = "confirmation_token_sequence",
-            allocationSize = 1
+        name = "vet_confirmation_token_sequence",
+        sequenceName = "vet_confirmation_token_sequence",
+        allocationSize = 1
     )
     @Id
     @GeneratedValue(
@@ -41,15 +41,15 @@ public class ConfirmationToken {
             nullable = false,
             name = "app_user_id"
     )
-    private Client client;
+    private Veterinary vet;
 
-    public ConfirmationToken(String token,
+    public VetConfirmationToken(String token,
                              LocalDateTime createdAt,
                              LocalDateTime expiresAt,
-                             Client client) {
+                             Veterinary vet) {
         this.token = token;
         this.createdAt = createdAt;
         this.expiresAt = expiresAt;
-        this.client = client;
+        this.vet = vet;
     }
 }
