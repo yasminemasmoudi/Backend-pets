@@ -24,9 +24,26 @@ public class Client{
     private String email;
     private String address;
     private String phone;
+    private String password;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private List<Pet> pets;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "client")
     private List<Appointment> appointments;
+
+
+    public Client(String fullName,
+                   String email,
+                   String address,
+                   String phone,
+                   String password) {
+        this.fullName = fullName;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.password = password;
+    }
 }
+
