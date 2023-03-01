@@ -1,33 +1,29 @@
 package com.pets.pets_service.Models;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
+import java.sql.Time;
+import java.util.Date;
+
 @Data
 @Entity
 @DynamicUpdate
 @DynamicInsert
-@Table(name = "pet")
-public class Pet {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String sex;
-    private String age;
-    private String furColor;
-    private String imgUrl;
-    private boolean forAdoption;
-    @Enumerated(EnumType.STRING)
-    private PetType petType;
+    private Date date;
+    private Time time;
+    private String description;
 
     @ManyToOne
-    @JsonIgnore
     private Client client;
 
-
-
+    @ManyToOne
+    private Veterinary veterinary;
 }
-
