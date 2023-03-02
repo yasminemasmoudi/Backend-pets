@@ -12,7 +12,7 @@ public class PPRegistrationController {
 
     @PostMapping
     public String register(@RequestBody PPRegistrationRequest request) {
-        return registrationService.register(request);
+        return "{\"token\":\""+registrationService.register(request)+"\"}";
     }
 
     @GetMapping(path = "confirm")
