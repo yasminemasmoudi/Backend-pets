@@ -32,6 +32,15 @@ public class VeterinaryController {
         return ResponseEntity.ok().body(veterinary);
     }
 
+    @GetMapping("/veterinaries/email/{email}")
+        public ResponseEntity<Veterinary> getPPByEmail(@PathVariable(value = "email") String email)
+            throws ResourceNotFoundException {
+
+        Veterinary veterinary = veterinaryRepo.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("veterinary not found with email: " + email));
+        return ResponseEntity.ok().body(veterinary);
+    }
+
     @PostMapping("/veterinaries")
     public Veterinary createVeterinary(@Valid @RequestBody Veterinary veterinary) {
         return veterinaryRepo.save(veterinary);

@@ -12,7 +12,7 @@ public class VetRegistrationController {
 
     @PostMapping
     public String register(@RequestBody VetRegistrationRequest request) {
-        return registrationService.register(request);
+        return "{\"token\":\""+registrationService.register(request)+"\"}";
     }
 
     @GetMapping(path = "confirm")

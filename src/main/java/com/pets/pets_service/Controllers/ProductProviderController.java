@@ -32,6 +32,15 @@ public class ProductProviderController {
         return ResponseEntity.ok().body(productProvider);
     }
 
+    @GetMapping("/productProviders/email/{email}")
+        public ResponseEntity<ProductProvider> getPPByEmail(@PathVariable(value = "email") String email)
+            throws ResourceNotFoundException {
+
+        ProductProvider productProvider = productProviderRepo.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("productProviderRepo not found with email: " + email));
+        return ResponseEntity.ok().body(productProvider);
+    }
+
     @PostMapping("/productProviders")
     public ProductProvider createProductProvider(@Valid @RequestBody  ProductProvider productProvider) {
         return productProviderRepo.save(productProvider);

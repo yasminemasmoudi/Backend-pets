@@ -30,6 +30,17 @@ public class ClientController {
         return ResponseEntity.ok().body(client);
     }
 
+    @GetMapping("/clients/email/{email}")
+        public ResponseEntity<Client> getClientByEmail(@PathVariable(value = "email") String email)
+            throws ResourceNotFoundException {
+
+        Client client = clientRepo.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Client not found with email: " + email));
+        return ResponseEntity.ok().body(client);
+    }
+
+ 
+
     @PostMapping("/clients")
     public Client createClient(@Valid @RequestBody Client client) {
         return clientRepo.save(client);
