@@ -14,3 +14,9 @@ You can configure the database connection by modifying the `application.properti
 
 ==> Clone and setup the Frontend application [here](https://github.com/sarrazaghbib/animal-frontend).
 
+
+## Video Demo
+Check out our [video demo](https://www.youtube.com/watch?v=Xia0290zFRA) of the website to see how it works in action.
+
+
+
